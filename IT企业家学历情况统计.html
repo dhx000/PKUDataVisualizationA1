@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '环形图';
+
+option = {
+  backgroundColor: '#2c343c',
+
+    
+   title : {
+        text: 'IT企业家学历情况统计',
+        subtext: 'feat by HxDong(MY_Devotion)',
+        x:'center',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#ccc',
+            fontSize:20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter:
+         function (obj) 
+            {
+                    var res="";
+                    var value=obj.value
+                    if (value==2)
+                    {
+                      res="包括: <br/>"+"李彦宏(美国布法罗纽约州立大学)<br/>"+"周鸿祎(西安交通大学)";
+                      return res;
+                    }
+                    if (value==4)
+                    {
+                        res="包括: <br/>"+"马化腾(深圳大学)<br/>"+"张一鸣(南开大学)<br/>"+"丁磊(电子科技大学)<br/>"+"马云(杭州师范学院)";
+                      return res;
+                    }
+                    
+                    return value;
+            }
+    },
+    color:['#f6da22','#bbe2e8','#6cacde'],
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['硕士学历','本科学历'],
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+
+    series: [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:2, name:'硕士学历'},
+                {value:4, name:'本科学历'}
+                
+            ]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

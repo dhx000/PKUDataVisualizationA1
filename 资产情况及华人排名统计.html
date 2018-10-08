@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var sizeFunction = function (x) {
+        var y = 3*Math.sqrt(x) + 20;
+        return y ;
+    };
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data = [
+//2015
+  [[3,1117.6,'马化腾']],
+  [[2,1384.3,'马云']],
+  [[10,476.3,'丁磊']],
+  [[6,660.4,'李彦宏']],
+//2016
+  [[3,1641.5,'马化腾']],
+  [[2,1889.4,'马云']],
+  [[5,1018.4,'丁磊']],
+  [[7,884.2,'李彦宏']],
+//2017
+  [[2,2581.8,'马化腾']],
+  [[3,2555.3,'马云']],
+  [[9,1118.8,'丁磊']],
+  [[8,1132,'李彦宏']],
+//2018
+  [[2,3111,'马化腾']],
+  [[3,2678.5,'马云']],
+  [[8,1195,'丁磊']],
+  [[12,824.16,'李彦宏']]
+];
+
+var clusterNumber = 6;
+// See https://github.com/ecomfe/echarts-stat
+var step = 4;
+var result;
+
+option = {
+    timeline: {
+        top: 'center',
+        right: 35,
+        height: 300,
+        width: 10,
+        inverse: true,
+        playInterval: 2500,
+        symbol: 'none',
+        orient: 'vertical',
+        axisType: 'category',
+        autoPlay: true,
+        label: {
+            normal: {
+                show: false
+            }
+        },
+        data: []
+    },
+    baseOption: {
+        title: {
+            text: '',
+            subtext: 'By HxDong(MY_Devotion)',
+            sublink: '',
+            left: 'center'
+        },
+       backgroundColor: '#404a59',
+
+        xAxis: {
+            type: 'value',
+            name:'国内资产排名',
+            max: 15,
+            min: 0,
+            nameGap: 25,
+            nameLocation: 'middle',
+            nameTextStyle: {
+                    fontSize: 18
+                },
+            splitLine: {
+                    lineStyle: {
+                type: 'dashed'
+            }
+                },
+            axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                },
+            axisLabel: {
+                    formatter: '第 {value} 位'
+                }
+        },
+        yAxis: {
+            type: 'log',
+            name:'总资产',
+            max: 3500,
+            min: 300,
+            nameGap: 25,
+           // nameLocation: 'top',
+            nameTextStyle: {
+                    fontSize: 18
+                },
+            splitLine: {
+                    lineStyle: {
+                type: 'dashed'
+            }
+                },
+            axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                },
+            axisLabel: {
+                    formatter: ' {value} 亿元'
+                }
+        },
+        series: [{
+            type: 'scatter'
+        }]
+    },
+    options: []
+};
+
+for (var i = 0; i<step; i++) {
+
+    option.options.push(getOption(data, i));
+    option.timeline.data.push(i + '');
+
+}
+
+function getOption(result, k) {
+  
+    var color = ['#bcd3bb', '#e88f70', '#edc1a5', '#9dc5c8', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
+    var series=[]
+    for (var i=0;i<4;i++)
+    {
+      series.push({
+        symbolSize: 20,
+        data: data[i+k*4],
+        type: 'scatter',
+        color:color[i],
+        symbolSize: function(val) {
+                        return sizeFunction(val[1]);
+                    },
+        label: {
+            normal: {
+                textStyle: {
+                    "fontSize": 18,
+                    color: 'black'
+                },
+                show: true,
+                formatter: function (param) {
+                    return param.data[2]+"\n\n"+param.data[1];
+                },
+                position: 'inside'
+
+            }
+            /*emphasis: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[2];
+                },
+                position: 'top'
+            }*/
+        }
+      });
+    }
+    /*var series=[{
+        symbolSize: 20,
+        data: data[k],
+        type: 'scatter',
+        color:'black',
+        label: {
+            normal: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[2];
+                },
+                position: 'top'
+            }
+        }
+      
+
+    }];
+*/
+    var year=k+2015;
+    var til=year+"年资产情况及华人排名";
+    return {
+      toolbox:{
+          show:true,
+          feature:{
+            saveAsImage:{
+              show:true,
+              excludeComponents:['toolbox'],
+              pixelRatio:2
+            }
+          }
+      },
+
+        tooltip: {
+            /*trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }*/
+
+            padding: 5,
+            backgroundColor: '#222',
+            borderColor: '#777',
+            borderWidth: 1,
+            formatter: 
+            function (obj) 
+            {
+                    var res="";
+                    var value=obj.value
+                    //res+=k+":" ;
+                     
+                    var return_test="姓名: "+value[2]+"<br/>"+"资产: "+value[1]+" 亿元"+"<br/>"+"国内排名: 第 "+value[0]+" 位";
+                    return return_test;
+            }
+            
+
+        },
+        series: series,
+        color:color,
+        title:
+        {
+          text:til,
+          textStyle: {
+                    color: '#aaa',
+                    fontWeight: 'normal',
+                    fontSize: 20
+                }
+        }
+
+    };
+};
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

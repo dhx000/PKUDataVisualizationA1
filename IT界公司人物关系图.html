@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IT界公司人物关系图</title>
+    <script src="echarts.js"></script>
+    <style type="text/css">
+        html, body, #main { height: 100%; width: 100%; margin: 0; padding: 0 }
+    </style>
+</head>
+<body>
+    <div id="main" style=""></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        option = {
+            title: { 
+                    text: 'IT界公司人物关系图', 
+                     x:'right',
+                     y:'bottom'
+
+                    },
+            tooltip: {
+                formatter: function (x) {
+                    return x.data.des;
+                }
+            },
+            toolbox: {
+                 show : true,
+                feature : {
+                     restore : {show: true},
+                     magicType: {show: true, type: ['force', 'chord']},
+                     saveAsImage : {show: true}
+                    }
+            },
+            legend:{
+                x:'left',
+                data:['资产']
+            },
+            
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'force',
+                    categories : [
+                     {
+                    name: '资产',
+                    symbol:'diamond'
+                    }
+                     ],
+                    symbolSize: 80,
+                    roam: true,
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    edgeLabel: {
+                        normal: {
+                            textStyle: {
+                                fontSize: 20
+                            }
+                        }
+                    },
+                    force: {
+                        repulsion: 2500,
+                        edgeLength: [50, 100]
+                    },
+                    draggable: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#7b68ee',
+                            nodeStyle : {
+                        brushType : 'both',
+                        borderColor : 'rgba(255,215,0,0.4)',
+                        borderWidth : 1
+                    }
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            width: 5,
+                            color: '#4b565b'
+
+                        }
+                    },
+                    edgeLabel: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                "fontSize": 15
+
+                            },
+                            formatter: function (x) {
+                                return x.data.name;
+                            }
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                "fontSize": 18
+                            },
+                            position:'bottom'
+                            
+                        }
+                    },
+                    data: [
+                        {
+                            name: '马化腾',
+                            des: '姓名:马化腾<br/>年龄:47<br/>主要公司:腾讯计算机系统有限公司<br/>腾讯公司主要创办人之一<br/>现任腾讯公司控股董事会主席兼首席执行官；全国青联副主席',
+                            symbol:'image://./mahuateng.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            },
+                            label:
+                            {
+                                normal:{
+                                    position:'bottom'
+                                }
+                            }
+
+                        }, 
+                        {
+                            name: '李彦宏',
+                            des: '姓名:李彦宏<br/>年龄:50<br/>主要公司:百度公司<br/>百度公司创始人、董事长兼首席执行官<br/>全面负责百度公司的战略规划和运营管理。',
+                            symbol:'image://./picture/yanhong.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            }
+                        }, {
+                            name: '张一鸣',
+                            des: '姓名:张一鸣<br/>年龄:35<br/>主要公司:字节跳动科技有限公司<br/>今日头条创始人、CEO',
+                            symbol:'image://./picture/zhangyiming.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            }
+                        }, {
+                            name: '周鸿祎',
+                            des: '姓名:周鸿祎<br/>年龄：48<br/>主要公司:奇虎360<br/>360公司创始人、董事长兼CEO、奇酷CEO',
+                            symbol:'image://./picture/zhouhongyi.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            }
+                        }, {
+                            name: '丁磊',
+                            des: '姓名:丁磊<br/>年龄：47<br/>主要公司:网易<br/>网易公司创始人，现担任网易公司董事局主席兼首席执行官',
+                            symbol:'image://./picture/dinglei.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            }
+                        }, {
+                            name: '马云',
+                            des: '姓名:马云<br/>年龄：54<br/>主要公司:阿里巴巴<br/>阿里巴巴集团主要创始人，现担任阿里巴巴集团董事局主席',
+                            symbol:'image://./picture/mayun.jpg',
+                            symbolSize: 100,
+                            itemStyle: {
+                                normal: {
+                                    color: 'black'
+                                }
+                            }
+                        },
+                        {
+                            name: 'QQ(腾讯)',
+                            des: 'QQ',
+                            symbol:'image://./picture/QQ.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '电脑管家',
+                            des: '腾讯电脑管家',
+                            symbol:'image://./picture/dngj.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '百度',
+                            des: '百度搜索',
+                            symbol:'image://./picture/baidu.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '抖音',
+                            des: '抖音APP',
+                            symbol:'image://./picture/dy.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '快手',
+                            des: '快手APP',
+                            symbol:'image://./picture/ks.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '搜狗',
+                            des: '搜狗搜索',
+                            symbol:'image://./picture/sougou.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '刺激战场',
+                            des: '刺激战场手游',
+                            symbol:'image://./picture/cjzc.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '第五人格',
+                            des: '第五人格手游',
+                            symbol:'image://./picture/dwrg.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '淘宝',
+                            des: '淘宝APP',
+                            symbol:'image://./picture/tb.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '支付宝',
+                            des: '支付宝——电子支付',
+                            symbol:'image://./picture/zfb.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '360安全卫士',
+                            des: '360系列',
+                            symbol:'image://./picture/360.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: 'qq钱包',
+                            des: 'qq钱包——电子钱包',
+                            symbol:'image://./picture/qqqb.jpg',
+                            symbolSize: 60,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '今日头条',
+                            des: '头条新闻',
+                            symbol:'image://./picture/jrtt.jpg',
+                            symbolSize: 60,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '网易',
+                            des: '网易门户网站，邮箱',
+                            symbol:'image://./picture/wy.jpg',
+                            symbolSize: 60,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                position:'bottom'
+                                        }
+                                     }
+
+                        },
+                        {
+                            name: '南开大学',
+                            des: '南开大学',
+                            symbol:'image://./picture/nku.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+
+                        }, 
+                        {
+                            name: '45.3B',
+                            catagory:0,
+
+                            des: '最高检反贪局侦查处处长，汉东省人民检察院副检察长兼反贪局局长。<br/>经过与腐败违法分子的斗争，最终将一批腐败分子送上了审判台，<br/>正义战胜邪恶，自己也迎来了成长。',
+                
+                            symbolSize: 100,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 20,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '深圳大学',
+                            des: '深圳大学',
+                            symbol:'image://./picture/szu.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+                        },
+                         {
+                            name: '西安交通大学',
+                            des: '西安交通大学',
+                            symbol:'image://./picture/xjtu.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+                        },
+                         {
+                            name: '杭州师范学院',
+                            des: '杭州师范学院',
+                            symbol:'image://./picture/hzsf.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+                        },
+                         {
+                            name: '北京大学',
+                            des: '北京大学',
+                            symbol:'image://./picture/pku.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+                        },
+                         {
+                            name: '电子科技大学',
+                            des: '电子科技大学',
+                            symbol:'image://./picture/ustc.jpg',
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                        position:'bottom'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '4B',
+                            catagory:0,
+
+                            des: '总资产：40亿美元',
+                
+                            symbolSize: 50,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '11.3B',
+                            catagory:0,
+
+                            des: '总资产：113亿美元',
+                
+                            symbolSize: 65,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '12B',
+                            catagory:0,
+
+                            des: '总资产：120亿美元',
+                
+                            symbolSize: 68,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 12,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '17.4B',
+                            catagory:0,
+
+                            des: '总资产：174亿美元',
+                
+                            symbolSize: 70,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 15,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        },
+                        {
+                            name: '39B',
+                            catagory:0,
+
+                            des: '总资产：390亿美元',
+                
+                            symbolSize: 85,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        "fontSize": 18,
+                                        color: 'black'
+                                                },
+                                    position:'inside'
+                                        }
+                                     }
+                        }
+
+                    ],
+                    links: [
+                        {
+                            source: '马化腾',
+                            target: 'QQ(腾讯)',
+                            name: "代表软件"
+
+                        },
+                        {
+                            source: '马化腾',
+                            target: '快手',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: '搜狗',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: '刺激战场',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: '电脑管家',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: '刺激战场',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: 'qq钱包',
+                            name: "代表软件"
+                        },
+                        {
+                            source: '马化腾',
+                            target: '45.3B',
+                            name: "资产"
+                        },
+                        {
+                            source:'马化腾',
+                            target:'深圳大学',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'张一鸣',
+                            target:'南开大学',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'张一鸣',
+                            target:'今日头条',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'张一鸣',
+                            target:'抖音',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'张一鸣',
+                            target:'4B',
+                            name:"资产"
+                        
+                        },
+                        {
+                            source:'抖音',
+                            target:'快手',
+                            name:"同类竞争"
+                        },
+                        {
+                            source:'周鸿祎',
+                            target:'西安交通大学',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'周鸿祎',
+                            target:'360安全卫士',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'电脑管家',
+                            target:'360安全卫士',
+                            name:"同类竞争"
+                        },
+                        {
+                            source:'周鸿祎',
+                            target:'11.3B',
+                            name:"资产"
+                        
+                        },
+                        {
+                            source:'马云',
+                            target:'39B',
+                            name:"资产"
+                        
+                        },
+                        {
+                            source:'马云',
+                            target:'淘宝',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'马云',
+                            target:'支付宝',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'支付宝',
+                            target:'qq钱包',
+                            name:"同类竞争"
+                        
+                        },
+                        {
+                            source:'马云',
+                            target:'杭州师范学院',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'丁磊',
+                            target:'电子科技大学',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'丁磊',
+                            target:'网易',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'丁磊',
+                            target:'第五人格',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'丁磊',
+                            target:'17.4B',
+                            name:"资产"
+                        
+                        },
+                        {
+                            source:'刺激战场',
+                            target:'第五人格',
+                            name:"同类竞争"
+                        
+                        },
+                        {
+                            source:'李彦宏',
+                            target:'百度',
+                            name:"代表软件"
+                        
+                        },
+                        {
+                            source:'李彦宏',
+                            target:'12B',
+                            name:"资产"
+                        
+                        },
+                        {
+                            source:'李彦宏',
+                            target:'北京大学',
+                            name:"毕业于"
+                        
+                        },
+                        {
+                            source:'搜狗',
+                            target:'百度',
+                            name:"同类竞争"
+                        
+                        }
+
+                        ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
